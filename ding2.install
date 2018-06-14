@@ -624,3 +624,28 @@ function ding2_update_7051() {
   // Opensearch.
   ding2_update_7048();
 }
+
+/**
+ * Update cookie compliance body text. Removes Webtrekk/Webtrends specific part.
+ * This is now handled in the appropiate module.
+ */
+function ding2_update_7052() {
+  if ($path = drupal_lookup_path('source', 'cookies')) {
+    $path = explode('/', $path);
+    $node = node_load($path[1]);
+    $node->field_ding_page_body = array(
+      'und' => array(
+        array(
+          'value' => _ding2_cookie_compliance_text(),
+          'format' => 'ding_wysiwyg',
+          'safe_value' => _ding2_cookie_compliance_text(),
+        ),
+      ),
+    );
+    node_save($node);
+
+    // Save the nid of the cookie page node to make it easy for other modules to
+    // change it.
+    variable_set('ding2_cookie_page_nid', $node->nid);
+  }
+}
