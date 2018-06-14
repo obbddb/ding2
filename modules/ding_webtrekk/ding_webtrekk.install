@@ -19,6 +19,18 @@ function ding_webtrekk_update_7001() {
 }
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function ding_webtrekk_update_dependencies() {
+  // We need ding2 to add the general cookie information before we append the
+  // Webtrekk specific information.
+  $dependencies['ding_webtrekk'][7001] = array(
+    'ding2' => 7052,
+  );
+  return $dependencies;
+}
+
+/**
  * Helper function to append the Webtrekk specific cookie compliance text.
  */
 function _ding_webtrekk_set_cookie_compliance_text() {
