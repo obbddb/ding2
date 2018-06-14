@@ -124,3 +124,11 @@ function _ding_webtrekk_set_data_layer_values(array $value_map) {
     'type' => 'inline',
   ]);
 }
+
+function ding_webtrekk_preprocess_node(&$variables) {
+  $nid = variable_get('ding2_cookie_page_nid');
+
+  if ($nid === $variables['nid']) {
+    drupal_add_js(drupal_get_path('module', 'ding_webtrekk') .'/js/ding_webtrekk.opt-out.js');
+  }
+}
