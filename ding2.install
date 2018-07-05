@@ -626,8 +626,8 @@ function ding2_update_7051() {
 }
 
 /**
- * Update cookie compliance body text. Removes Webtrekk/Webtrends specific part.
- * This is now handled in the appropiate module.
+ * Update cookie compliance body text and removes Webtrekk/Webtrends specific
+ * part, which is now handled in ding_webtrekk module.
  */
 function ding2_update_7052() {
   if ($path = drupal_lookup_path('source', 'cookies')) {

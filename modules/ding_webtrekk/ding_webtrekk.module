@@ -133,6 +133,6 @@ function ding_webtrekk_preprocess_node(&$variables) {
 
   // If this is the cookie page; add the Webtrekk opt-out javascript.
   if ($nid === $variables['nid']) {
-    drupal_add_js(drupal_get_path('module', 'ding_webtrekk') .'/js/ding_webtrekk.opt-out.js');
+    drupal_add_js(drupal_get_path('module', 'ding_webtrekk') . '/js/ding_webtrekk.opt-out.js');
   }
 }
