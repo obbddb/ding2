@@ -784,7 +784,7 @@ function ding2_set_cookie_page() {
   variable_set('eu_cookie_compliance_da', $eu_cookie_compliance_da);
   variable_set('eu_cookie_compliance_cookie_lifetime', 365);
 
-  $body = _ding2_cookie_page_body();
+  $body = _ding2_cookie_information_text();
 
   $page_lead = 'Vi vil gerne tilbyde vores brugere en overskuelig og brugervenlig hjemmeside. For at sikre os, at indholdet på siden er relevant og til at finde rundt i, benytter vi os af cookies. Cookies giver os vigtige informationer om, hvordan vores side bliver brugt, hvilke sider der bliver set mest, hvor længe vores brugere bliver på siderne osv.';
 
@@ -831,7 +831,7 @@ function ding2_set_cookie_page() {
 /**
  * Helper function to store cookie compliance body-text.
  */
-function _ding2_cookie_compliance_text() {
+function _ding2_cookie_information_text() {
   return '<p><strong>Hvad er cookies?</strong></p>
     <p>En cookie er en lille tekstfil, som lægges på din computer, smartphone, ipad eller lignende med det formål at indhente data. Den gør det muligt for os at måle trafikken på vores site og opsamle viden om f.eks. antal besøg på vores hjemmeside, hvilken browser der bliver brugt, hvilke sider der bliver klikket på, og hvor lang tid der bruges på siden. Alt sammen for at vi kan forbedre brugeroplevelsen og udvikle nye services.</p>
     <p>Når du logger ind for at se lånerstatus, reservere m.m. sættes en såkaldt sessions-cookie. Denne cookie forsvinder, når du logger ud.</p>

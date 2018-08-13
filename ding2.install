@@ -636,9 +636,9 @@ function ding2_update_7052() {
     $node->field_ding_page_body = array(
       'und' => array(
         array(
-          'value' => _ding2_cookie_compliance_text(),
+          'value' => _ding2_cookie_information_text(),
           'format' => 'ding_wysiwyg',
-          'safe_value' => _ding2_cookie_compliance_text(),
+          'safe_value' => _ding2_cookie_information_text(),
         ),
       ),
     );
