@@ -633,6 +633,19 @@ function ding2_update_7052() {
   if ($path = drupal_lookup_path('source', 'cookies')) {
     $path = explode('/', $path);
     $node = node_load($path[1]);
+
+    // Make a backup to save any changes editors may have made.
+    $backup = clone $node;
+    $backup->is_new = TRUE;
+    $backup->title .= ' (BACKUP)';
+    unset($backup->nid);
+    unset($backup->vid);
+    unset($backup->tnid);
+    // Also handle modules that attach a UUID to the node.
+    unset($backup->uuid);
+    unset($backup->vuuid);
+    node_save($backup);
+
     $node->field_ding_page_body = array(
       'und' => array(
         array(
