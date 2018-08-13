@@ -9,12 +9,12 @@
 
   Drupal.behaviors.ding_webtrekk = {
     attach: function(context) {
-      // If Webtrekk is not setup correctly, we might not have this.
-      if (typeof webtrekkV3 === 'undefined') {
-        return;
-      }
-
       $('.webtrekk-opt-out', context).click(function() {
+        // If Webtrekk is not setup correctly, we might not have this.
+        if (typeof webtrekkV3 === 'undefined') {
+          return;
+        }
+
         webtrekk = new webtrekkV3();
         // track the opt-out event in Webtrekk.
         webtrekk.sendinfo({linkId: 'event_optout'});
