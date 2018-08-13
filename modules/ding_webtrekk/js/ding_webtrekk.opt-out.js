@@ -9,7 +9,8 @@
 
   Drupal.behaviors.ding_webtrekk = {
     attach: function(context) {
-      $('.webtrekk-opt-out', context).click(function() {
+      $('.webtrekk-opt-out', context).click(function(e) {
+        e.preventDefault();
         // If Webtrekk is not setup correctly, we might not have this.
         if (typeof webtrekkV3 === 'undefined') {
           return;
@@ -24,11 +25,10 @@
         // Use ding_popup to show confirmation text.
         var text = '<p>' + Drupal.t('You have successfully excluded yourself from tracking.') + '</p>';
         var popup = ddbasic.popupbar.set('ding_webtrekk', text, false);
-        $('.close-popupbar', popup).click(function() {
-          evt.preventDefault();
+        $('.close-popupbar', popup).click(function(e) {
+          e.preventDefault();
           ddbasic.popupbar.close();
         });
-        return false;
       });
     }
   };
