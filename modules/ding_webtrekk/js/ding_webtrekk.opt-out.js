@@ -20,7 +20,14 @@
         webtrekk.sendinfo({linkId: 'event_optout'});
         // Set the opt-out cookie (for 5 years).
         webtrekk.setCookie ('webtrekkOptOut', 1, 60 * 60 * 24 * 30 * 12 * 5);
-        alert(Drupal.t('Dear user, you have successfully excluded yourself from tracking.'));
+
+        // Use ding_popup to show confirmation text.
+        var text = '<p>' + Drupal.t('You have successfully excluded yourself from tracking.') + '</p>';
+        var popup = ddbasic.popupbar.set('ding_webtrekk', text, false);
+        $('.close-popupbar', popup).click(function() {
+          evt.preventDefault();
+          ddbasic.popupbar.close();
+        });
         return false;
       });
     }
