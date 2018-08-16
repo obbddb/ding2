@@ -57,6 +57,9 @@ projects[customerror][patch][] = "patches/customerror-disable_auto_redirect.ding
 projects[date][subdir] = "contrib"
 projects[date][version] = "2.8"
 
+projects[date_repeat_entity][subdir] = "contrib"
+projects[date_repeat_entity][version] = "2.0"
+
 projects[dibs][subdir] = "contrib"
 projects[dibs][version] = "1.0"
 ; Patch to fix empty order_id. See https://drupal.org/node/2107389
@@ -350,6 +353,9 @@ projects[redirect][version] = "1.0-rc3"
 
 projects[relation][subdir] = "contrib"
 projects[relation][version] = "1.0"
+
+projects[replicate][subdir] = "contrib"
+projects[replicate][version] = "1.2"
 
 projects[role_delegation][subdir] = "contrib"
 projects[role_delegation][version] = "1.1"
