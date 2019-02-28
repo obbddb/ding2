@@ -420,7 +420,12 @@ function ding_place2book_field_presave($entity_type, $entity, $field, $instance,
         // in bulk via the UI.
         // See ding_place2book_field_widget_form() for more info.
         if ($settings['synchronize'] && !empty($settings['do_sync'])) {
-          $items = _ding_place2book_sync_p2b_entities($entity, $settings);
+          if ($result = _ding_place2book_sync_p2b_entities($entity, $settings)) {
+            // If sync was successful ensure that the fields local data is
+            // updated accordingly.
+            $items[0]['event_id'] = $result['event_id'];
+            $items[0]['event_maker_id'] = $result['event_maker_id'];
+          }
         }
         else {
           $items = array(
@@ -517,10 +522,10 @@ function ding_place2book_field_formatter_view($entity_type, $entity, $field, $in
  *   Represents array of data and settings.
  *
  * @return array
- *   Array of items for field_place2book.
+ *   A result array with event_id and event_maker_id. FALSE on sync error.
  */
 function _ding_place2book_sync_p2b_entities($entity, array $settings) {
-  $items = [];
+  $result = FALSE;
 
   $event_id = !empty($settings['event_id']) ? $settings['event_id'] : FALSE;
   $event_maker_id = FALSE;
@@ -600,13 +605,11 @@ function _ding_place2book_sync_p2b_entities($entity, array $settings) {
         drupal_set_message($ex->getMessage(), 'error');
       }
     }
-    $items = array(
-      array(
-        'event_id' => $event->id,
-        'event_maker_id' => $event_maker_id,
-        'synchronize' => 1,
-      ),
-    );
+
+    $result = [
+      'event_id' => $event->id,
+      'event_maker_id' => $event_maker_id,
+    ];
 
     if ($is_new) {
       drupal_set_message(t('Event was successfully created.'));
@@ -615,5 +618,5 @@ function _ding_place2book_sync_p2b_entities($entity, array $settings) {
       drupal_set_message(t('Event was successfully updated.'));
     }
   }
-  return $items;
+  return $result;
 }
